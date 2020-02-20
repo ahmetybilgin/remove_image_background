@@ -39,7 +39,7 @@ This project is to detect a several objects including person in an image, conver
 - Library install
     
     ```
-     pip3 install -r requirement.txt
+     pip3 install -r requirements.txt
     ```
 
 ## Project Execution
@@ -55,3 +55,7 @@ This project is to detect a several objects including person in an image, conver
     ```
 
 Then this project transforms all the images in input directory and exports the result with png format.
+
+
+
+python3 cvt.py --input /media/mensa/Data/Task/ImageBgRemoval/utils/mask_rcnn_resnet101_atrous_coco_2018_01_28/frozen_inference_graph.pb --config /media/mensa/Data/Task/ImageBgRemoval/utils/mask_rcnn_resnet101_atrous_coco_2018_01_28/pipeline.config --output graph.pbtxt
