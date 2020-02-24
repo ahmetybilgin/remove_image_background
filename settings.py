@@ -12,3 +12,6 @@ MODEL_DIR = make_directory_if_not_exists(os.path.join(CUR_DIR, 'utils', 'model')
 MODEL_PATH = os.path.join(MODEL_DIR, 'bg_removal_graph.pb')
 
 MIN_RATIO = 0.1
+HSV_THRESH = 40
+SUB_IMG_COUNTS = 20
+SUB_IMG_MARGIN = 5

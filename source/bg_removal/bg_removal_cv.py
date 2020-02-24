@@ -6,7 +6,7 @@ from settings import OUTPUT_DIR
 from source.dominant_color_removal import remove_dominant_color
 
 
-def detect_image_outline(frame_path, dm_color):
+def detect_image_outline(frame_path):
 
     origin_file_name = ntpath.basename(frame_path)
     png_file_name = origin_file_name.replace(origin_file_name[origin_file_name.rfind(".") + 1:], "png")

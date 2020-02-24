@@ -1,16 +1,22 @@
 import numpy as np
 import cv2
+from matplotlib import pyplot as plt
 
 
-def unique_count_app(frame_path):
+def unique_count_app(frame, mask):
 
-    cv2_frame = cv2.imread(frame_path)
+    hsv_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+    hsv_main_values = []
+    for i in range(1, 3):
 
-    colors, count = np.unique(cv2_frame.reshape(-1, cv2_frame.shape[-1]), axis=0, return_counts=True)
+        hist = cv2.calcHist([hsv_frame], [i], mask, [256], [0, 256])
+        main_value = np.argmax(hist)
+        hsv_main_values.append(main_value)
 
-    return colors[count.argmax()]
+    return hsv_main_values
 
 
 if __name__ == '__main__':
 
-    unique_count_app(frame_path="")
+    pass
+    # unique_count_app(frame_path="")

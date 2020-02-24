@@ -1,10 +1,10 @@
 import os
 import tqdm
 import numpy as np
+import cv2
 
 from io import BytesIO
 from PIL import Image
-from utils.image_processing import unique_count_app
 from source.object_detection import DeepLabModel
 from source.bg_removal.bg_removal_tf import draw_segment
 from source.bg_removal.bg_removal_cv import detect_image_outline
@@ -21,16 +21,22 @@ def run_visualization(filepath, filename_r):
         print('Cannot retrieve image. Please check file: ' + filepath)
         return
 
-    dominant_color = unique_count_app(frame_path=filepath)
     resized_im, seg_map = model.run(image=original_im)
-    zero_ratio = np.count_nonzero(seg_map) / seg_map.size
+    frame = np.array(resized_im)
+    r, g, b = cv2.split(frame)
+    base_img_cv = cv2.merge([b, g, r])
 
+    # cv2.imwrite(filename_r, cv2.merge([b, g, r]))
+    # cv2.imwrite(filename_r.replace(".png", "") + "_mask.png", seg_map * 255)
+
+    zero_ratio = np.count_nonzero(seg_map) / seg_map.size
+    #
     if zero_ratio < 0.1:
 
-        save_file_path = detect_image_outline(frame_path=filepath, dm_color=dominant_color)
+        save_file_path = detect_image_outline(frame_path=filepath)
     else:
 
-        save_file_path = draw_segment(base_img=resized_im, mat_img=seg_map, filename_d=filename_r)
+        save_file_path = draw_segment(base_img=base_img_cv, mat_img=seg_map, filename_d=filename_r)
 
     return save_file_path
 
