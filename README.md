@@ -1,57 +1,66 @@
-# Project Description
+# ImageBgRemoval
 
-This project is to detect a several objects including person in an image, convert white background to transparent and save the image obtained through such a process into png file format.
+## Overview
 
-## Project Structure
+This project is to detect the several objects including person in an image, convert white background to transparent and 
+save the obtained image into png file format. To improve the accuracy of transformation, the Pytorch framework is used, 
+which needs usage of GPU. In detail, the deeplab framework is used in this project.
+
+## Structure
 
 - data
 
-    There are two directories, one of which contains the images to process and other of which shows the result images, contains the png file.
+    There are two directories, one of which contains the images to convert background and other of which shows the 
+    result images, contains the png file.
 
 - source
     
-    The main source code to process image transformation is contained.
+    The main source code to process image transformation.
     
 - utils
 
-    Tools concerned with image processing and file management are contained.
+    The tools concerned with image processing, models and file management.
 
 - main
 
-    This is the main execution file.
+    The main execution file.
 
 - requirements
     
-    All the libraries to execute project are inserted.
+    All the dependencies to execute project.
 
 - settings
 
-    Several settings are conducted in this file
+    Several options in it.
 
-## Project Install
+## Installation
 
 - Environment
 
-    Ubuntu 18.04
-    
-- Python 3.6 environment
+    Ubuntu 18.04, Python 3.6, GPU
 
-- Library install
+- Dependency installation
     
     ```
-     pip3 install -r requirements.txt
+        pip3 install -r requirements.txt
     ```
 
-## Project Execution
+- Preparation for deeplab model
+    
+    * Please download the model from https://drive.google.com/file/d/1vzLRbMua_hxYXpBH8WWTozThHX4DTvIX/view?usp=sharing 
+    and copy them to /utils/model.
+    * After downloading deep learning model at 
+    http://download.tensorflow.org/models/deeplabv3_pascal_train_aug_2018_01_04.tar.gz, please copy it to 
+    utils/model directory.
+    
+## Execution
 
 - Please copy images to transform in data/input directory.
 
-- After downloading deep learning model at http://download.tensorflow.org/models/deeplabv3_pascal_train_aug_2018_01_04.tar.gz, please copy it to utils/model directory. 
-
-- Please go ahead to this project directory and execute following command in terminal
+- Please go ahead to this project directory and run the following command in terminal
     
     ```
-    python3 main.py
+        python3 main.py
     ```
 
 Then this project transforms all the images in input directory and exports the result with png format.
